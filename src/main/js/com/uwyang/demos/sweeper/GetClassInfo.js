@@ -31,6 +31,12 @@ foam.CLASS({
       factory: function(){
         return [];
       }
+    },
+    {
+      name: 'classInfoTree',
+      factory: function(){
+        return [];
+      }
     }
   ],
 
@@ -59,27 +65,50 @@ foam.CLASS({
       }
       this.classUsageView = e;
       this.countObjArr = objArr;
-      return objArr.filter((obj)=> {return (Object.keys(obj)[0] === "foam.u2.ActionView" || Object.keys(obj)[0] === "foam.u2.Element" );})
-      //return [objArr[0]];
+      //return objArr.filter((obj)=> {return (Object.keys(obj)[0] === "foam.u2.ActionView" || Object.keys(obj)[0] === "foam.u2.Element" );})
+      return objArr;
     },
 
     //do this recursively.
     function constructTree(){
-      this.classInfoArray = [];
+      this.classInfoArray = [
+        {id: 'FObject', name:'FObject', package: '', parent:'FOAM'},
+        {id: 'Property', name:'Property', package: '', parent: 'FOAM'},
+        {id: 'Model', name:'Property', package: '', parent: 'FOAM'},
+        {id: 'Method', name:'Method', package: '', parent: 'FOAM'},
+        //{id: 'String', name:'String', package: ''},
+      ];
       var countObjArr = this.getClassCount();
       var listObjArr = [];
       countObjArr.forEach((obj) => {
-        var infoObj = this.getAllInfo(eval(Object.keys(obj)[0]+".create()"));
-        this.classInfoArray.push(infoObj);
+        this.getAllInfo(eval(Object.keys(obj)[0]), obj[Object.keys(obj)[0]]);
       });
+      this.classInfoTree = listToTree(this.classInfoArray, {parentKey: 'parentId', idKey: 'id'});
+      console.log(JSON.stringify(this.classInfoTree));
     },
 
-    function getAllInfo(obj){
+    function getAllInfo(obj, count){
       var infoObj = {};
-      infoObj.id = obj.cls_.id;
+      infoObj.id = obj.id;
       infoObj.name = obj.model_.name;
       infoObj.package = obj.model_.package;
+      infoObj.count = count?count:0;
 
+
+      var extendedClassName = obj.model_.extends;
+      inClassInfoArray = inClassList = (modelId)=> {
+        return this.classInfoArray.filter((obj)=>{
+          return obj.id == modelId;
+        }).length;
+      };
+      infoObj.parentId = extendedClassName;
+      this.classInfoArray.push(infoObj);
+
+      if (extendedClassName && !(inClassInfoArray(extendedClassName))){
+        if (typeof eval(extendedClassName) === 'object') this.getAllInfo(eval(extendedClassName));
+      };
+
+      /*
       inClassList = (modelId)=> {
 
         return this.countObjArr.filter((obj)=>{
@@ -87,17 +116,20 @@ foam.CLASS({
         }).length;
       }
 
-      var extendedClassName = obj.model_.extends;
       if (extendedClassName && !(inClassList(extendedClassName))){
+      //if (extendedClassName){
         if (extendedClassName !== 'FObject'){
             infoObj.parent = this.getAllInfo(eval(extendedClassName+".create()"));
         } else {
-          infoObj.parent = {id: 'FObject', name:'FObject'};
+          infoObj.parent = {id: 'FObject', name:'FObject', package: ''};
+
         }
+      }else {
+        infoObj.parentId = extendedClassName;
       }
       return infoObj;
+      */
     },
-
 
 
     function getExtendName(data){
