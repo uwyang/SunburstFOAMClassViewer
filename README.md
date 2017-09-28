@@ -1,4 +1,4 @@
-# SunBurst FOAM Class Vier
+# SunBurst FOAM Class Viewer
 -- a nice way to visualize howmany classes there are, their inheritance, etc. 
 
 ## Introduction: 
@@ -10,7 +10,7 @@ foam.debug.showCreates() (OR: foam.used) shows a list of classes that has being 
 ![original](https://github.com/uwyang/SunburstFOAMClassViewer/blob/master/examples/burst1.png "original")
 
 The data is gotten from the FOAM sweeper demo, understandably, most of the elements (visual elements) are sweeper cells. 
-![zoomin](https://github.com/uwyang/SunburstFOAMClassViewer/blob/master/examples/burst1.png "zoomin")
+![zoomin](https://github.com/uwyang/SunburstFOAMClassViewer/blob/master/examples/burst2.png "zoomin")
 ![sweeper](https://github.com/uwyang/SunburstFOAMClassViewer/blob/master/examples/sweeper.png "sweeper")
 
 ## UI (TODO)
