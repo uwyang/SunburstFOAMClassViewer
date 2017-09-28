@@ -30,7 +30,8 @@ http://bl.ocks.org/metmajer/5480307
 https://bl.ocks.org/mbostock/4063550
 
 - [FOAM2 Javascript Framework](https://github.com/foam-framework/foam2 "FOAM2 Github page")
-- [npm package image-outline](https://www.npmjs.com/package/image-outline "npm image-outline page")
+- [D3](https://github.com/d3/d3/wiki/gallery 'd3.js')
+- [List-To-Tree](https://github.com/William17/list-to-tree-lite "list-to-tree")
 - JavaScript ES6
 - HTML5 Canvas Element
 
