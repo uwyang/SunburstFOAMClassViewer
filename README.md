@@ -1,27 +1,37 @@
-# OutlineShadow
+# SunBurst FOAM Class Vier
+-- a nice way to visualize howmany classes there are, their inheritance, etc. 
 
 ## Introduction: 
-I've been interested in Generative art since the age of flash. Many frame work have crossed my path, including Flash, Processing,Processing.js, Java(in its pure and original form), and now I'm trying to make some generative art pieces with FOAM.
 
-![Original](https://github.com/uwyang/OutlineShadow/blob/master/examples/stag_shadow.png "stag")
-![Shadow](https://github.com/uwyang/OutlineShadow/blob/master/examples/stag.png "stag")
+This is only possible by the virtues of foam. 
+foam.debug.showCreates() (OR: foam.used) shows a list of classes that has being generated so far. 
+(object of interest).model_.extends (and other attributes) shows inheritance and other important information. 
 
+![original](https://github.com/uwyang/SunburstFOAMClassViewer/blob/master/examples/burst1.png "original")
 
-![Shadow](https://github.com/uwyang/OutlineShadow/blob/master/examples/girl_sketch.png "girl")
-![Original](https://github.com/uwyang/OutlineShadow/blob/master/examples/girl.png "girl")
+The data is gotten from the FOAM sweeper demo, understandably, most of the elements (visual elements) are sweeper cells. 
+![zoomin](https://github.com/uwyang/SunburstFOAMClassViewer/blob/master/examples/burst1.png "zoomin")
+![sweeper](https://github.com/uwyang/SunburstFOAMClassViewer/blob/master/examples/sweeper.png "sweeper")
 
-## UI
+## UI (TODO)
 
-User may specify random step length, step opacity(alpha) and color. 
-You may also save your creation. 
+0) in radial view, allow the option of ignoring count. 
+(same size slices regardless of class object count)
+1) switch between partition view and radial tidy tree
+2) in radio tidy tree, use color to indicate usage. 
+3) let user decide color -> class number. 
+4) mouseover shows class number
 
 ## Technologies used: 
 
-At first, I was very keen on incooperating as many node packages as possible, because, well, looks good on resume. But I have thought twice and this is mostly pure javascript+FOAM. I have used an image-outline package to generate outline of points in an .png file.
+FOAM and d3.js. 
+examples: 
+http://bl.ocks.org/metmajer/5480307
+https://bl.ocks.org/mbostock/4063550
 
 - [FOAM2 Javascript Framework](https://github.com/foam-framework/foam2 "FOAM2 Github page")
 - [npm package image-outline](https://www.npmjs.com/package/image-outline "npm image-outline page")
 - JavaScript ES6
 - HTML5 Canvas Element
 
-## 
+
